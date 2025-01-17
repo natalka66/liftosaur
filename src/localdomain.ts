@@ -1,2 +1,2 @@
-export const localdomain = "local";
-export const localapidomain = "local-api";
+export const localdomain = "local2";
+export const localapidomain = "local-api2";

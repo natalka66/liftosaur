@@ -16,6 +16,7 @@ import { PlannerCodeBlock } from "../planner/components/plannerCodeBlock";
 import { PlannerEditorView } from "../planner/components/plannerEditorView";
 import { PlannerProgram } from "../planner/models/plannerProgram";
 import { IPlannerState } from "../planner/models/types";
+import { TopNavMenu_2 } from "../../components/topNavMenu-2";
 
 export interface IMainContentProps {
   client: Window["fetch"];
@@ -44,16 +45,19 @@ export function MainContent(props: IMainContentProps): JSX.Element {
   }, []);
 
   return (
-    <div style={{ maxWidth: 1200 }} className="mx-auto">
-      <div className="mx-4 md:mx-8">
-        <TopNavMenu client={props.client} account={props.account} maxWidth={1200} current="/about" />
-        <Hero />
-        <HowItWorks />
-        <BuiltinPrograms />
-        <Features />
-        <div className="mt-8 text-center">
-          <StoresLinks />
+    <div className="mx-auto">
+      <div>
+        <div className="bg-contain bg-no-repeat" style={{ backgroundImage: "url('/images/redesign/background.jpg')" }}>
+          <TopNavMenu_2 />
+          <Hero />
+          <CreateYourOwnPrograms />
+          <BuiltinPrograms />
         </div>
+
+        <TopNavMenu client={props.client} account={props.account} maxWidth={1200} current="/about" />
+
+        <Features />
+        <div className="mt-8 text-center"></div>
         <div className="pt-8 mt-16 border-t border-grayv2-100">
           <FooterPage maxWidth={1200} withoutBg={true} account={props.account} />
         </div>
@@ -64,18 +68,20 @@ export function MainContent(props: IMainContentProps): JSX.Element {
 
 function Hero(): JSX.Element {
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row my-12 mx-auto" style={{ maxWidth: "1200px" }}>
       <div style={{ flex: 2 }}>
-        <div className="mx-auto" style={{ maxWidth: "30rem" }}>
-          <h1 className="hidden mt-12 mb-4 text-6xl font-bold leading-none md:block">Liftosaur</h1>
-          <h2 className="mb-4 text-xl">
+        <div className="ml-24" style={{ maxWidth: "30rem" }}>
+          <div className="flex mb-3">
+            <img className="inline" style={{ width: "5.5em" }} src="/images/redesign/stars.png" alt="five stars"></img>
+            <span className="hidden font-bold leading-none md:block">“Best Workout App”</span>
+          </div>
+
+          <h1 className="mb-4 font-bold text-4xl leading-tight">
             The most powerful weightlifting <span className="font-bold text-purplev2-main">planner</span> and{" "}
             <span className="font-bold text-orangev2">tracker</span> app
-          </h2>
-          <p className="mb-4 text-xl">
+          </h1>
+          <p className="mb-4 text-sm">
             It's like having mobile-friendly <strong>Google Sheets</strong> and <strong>Strong</strong> in the same app!
-          </p>
-          <p className="mb-4">
             Create your own programs, or choose one of the existing programs, like{" "}
             <a className="font-bold underline text-bluev2" href="/programs/gzclp/" target="_blank">
               GZCLP
@@ -86,20 +92,21 @@ function Hero(): JSX.Element {
             </a>
             , that have helped thousands of lifters get bigger and stronger.
           </p>
+
           <div className="mb-8 text-center md:text-left">
             <StoresLinks />
           </div>
         </div>
       </div>
-      <div style={{ flex: 1 }} className="relative flex justify-center">
-        <div className="relative" style={{ width: "271px", height: "555px" }}>
+      <div style={{ flex: 1, marginRight: "125px" }} className="relative flex justify-center">
+        <div className="relative" style={{ width: "241px", height: "494px" }}>
           <div
-            className="absolute top-0 left-0 z-10 bg-contain"
-            style={{ backgroundImage: "url(/images/iphoneframe.png)", width: "271px", height: "555px" }}
+            className="absolute top-0 left-0 z-10 bg-contain bg-no-repeat"
+            style={{ backgroundImage: "url(/images/redesign/iphone-frame.png)", width: "241px", height: "494px" }}
           />
           <video
             className="absolute top-0 left-0"
-            style={{ width: "248px", height: "535px", top: "10px", left: "12px" }}
+            style={{ width: "222px", height: "478px", top: "8px", left: "10px", borderRadius: "20px" }}
             playsInline
             autoPlay
             muted
@@ -112,87 +119,55 @@ function Hero(): JSX.Element {
   );
 }
 
-function HowItWorks(): JSX.Element {
+function CreateYourOwnPrograms(): JSX.Element {
   return (
-    <div className="mx-auto mt-8 text-base" style={{ maxWidth: 1000 }}>
-      <h2 className="mb-4 text-4xl font-bold text-center">How it works</h2>
-      <p className="mb-2">General process is like this:</p>
-      <ol className="mb-2 ml-4 list-decimal">
-        <li>Pick a built-in program or create your own</li>
-        <li>Follow the program and track your lifts</li>
-      </ol>
-      <p className="mb-2">
-        The app uses a special syntax to define weightlifting programs. You can define what exercises to do on what
-        weeks/days, warmups, progressive overload type (either built-in or custom). You can even use a built-in
-        scripting language to define non-trivial progression schemes!
+    <div className="mx-auto mt-16 text-base" style={{ maxWidth: 1000 }}>
+      <div className="flex justify-center">
+        <img style={{ width: "2em" }} src="/images/redesign/icon-editor.svg" alt="icon-editor"></img>
+        <h6 className="font-semibold" style={{ color: "#8356F6" }}>
+          Workout Editor
+        </h6>
+      </div>
+      <h2 className="mb-4 text-4xl font-bold text-center">Create your own programs</h2>
+      <p className="text-center mx-auto mb-12" style={{ width: "700px" }}>
+        Write your weightlifting program in plain text using a special syntax — Liftoscript. Define what exercises to do
+        on what weeks/days, warmups, progressive overload type. You can even use a built-in scripting language to define
+        non-trivial progression schemes!
       </p>
-      <p className="mb-2">
-        This syntax is called <span className="font-bold text-purplev2-main">Liftoscript</span> (check the{" "}
-        <a href="/docs" target="_blank" className="font-bold underline text-bluev2">
-          docs
-        </a>
-        !), and it looks like this:
-      </p>
+
       <div className="my-4">
+        <div className="relative">
+          <div
+            className="absolute z-10 bg-contain bg-no-repeat"
+            style={{
+              backgroundImage: "url(/images/redesign/arrow.png)",
+              width: "140px",
+              height: "40px",
+              top: 150,
+              left: 400,
+            }}
+          />
+        </div>
+
         <MainEditorAndPlayground />
       </div>
-      <p className="mb-2">
-        This is <span className="font-bold text-orangev2">interactive demo</span> - try to{" "}
-        <strong>change the sets</strong>, <strong>reps</strong> or <strong>weight</strong> in Squat or Bench Press, or
-        e.g. try to add "
-        <strong>
-          Bicep Curl / <span style={{ color: "#994400" }}>3x10-12</span>
-        </strong>
-        " on the new line. You'll see it gets applied to the playground on the right.
-      </p>
-
-      <p className="mb-2">
-        Then, on the playground - <strong>tap on the squares to complete sets</strong>. If you tap on all the sets of an
-        exercise - you'll see it says it'll increase the weight next time - that's because we specified linear
-        progression for them (that "<span style={{ color: "#770088" }}>progress</span>:
-        <span style={{ color: "#994400" }}>lp</span>(<span style={{ color: "#28839F" }}>5lb</span>)" part).
-      </p>
-
-      <p className="mb-2">
-        It works in the app the same way - you either pick one of built-in programs (which are all implemented using the
-        same syntax - so you can edit every bit of them), or create your own. You specify the progression rules, the
-        sets and reps, you could also see the daily/weekly volume per muscle group - so you pick the exercises and what
-        days you do them wisely.
-      </p>
-
-      <p className="mb-2">And then you tap the set squares in the gym and track your lifts!</p>
-
-      <p className="mb-2">
-        If none of the built-in progressions fit your needs (neither Linear nor Double), you can{" "}
-        <strong>script your own progressions</strong>! For example you want Dynamic Double Progression (where Double
-        Progression is applied to each set individually) - you could do it like this:
-      </p>
-      <div className="m-2 overflow-x-auto">
-        <PlannerCodeBlock
-          script={`Bench Press / 3x12-15 / progress: custom() {~
-  for (var.i in completedReps) {
-    if (completedReps[var.i] >= reps[var.i]) {
-      weights[var.i] += 5lb;
-    }
-  }
-~}`}
-        />
-      </div>
-      <p className="mb-2">
-        Thus you can implement pretty much any possible weightlifting program! Myo-reps, drop sets, manipulating weight,
-        reps, RPE or even rest timer via scripts - anything is possible!
-      </p>
     </div>
   );
 }
 
 function BuiltinPrograms(): JSX.Element {
   return (
-    <div className="mx-auto mt-8 text-base" style={{ maxWidth: 1000 }}>
-      <h2 className="mb-4 text-4xl font-bold text-center">Built-in Programs</h2>
+    <div className="mx-auto mt-8 " style={{ maxWidth: 1000, backgroundColor: "#F3EEFF" }}>
+      <div className="flex justify-center self-center mt-20">
+        <img style={{ width: "2em" }} src="/images/redesign/icon-programs.svg" alt="icon-programs"></img>
+        <h6 className="font-semibold text-base" style={{ color: "#8356F6" }}>
+          Weightlifting Programs
+        </h6>
+      </div>
+      <h2 className="mb-4 text-4xl font-bold text-center">Follow free build-in programs</h2>
       <p className="mb-2">
-        All the programs are fully customizable, and written using the same Liftoscript, so you can edit every bit of
-        them!
+        Start with a trusted program. All are built with Liftoscript, making them fully customizable to match your goals
+        and preferences.
       </p>
       <ul className="ml-8 list-disc">
         <li>
@@ -508,8 +483,16 @@ function Features(): JSX.Element {
 
 function StoresLinks(): JSX.Element {
   return (
-    <div>
+    <div className="flex">
       <div>
+        <img
+          className="inline"
+          style={{ width: "115px", height: "130px" }}
+          src="/images/redesign/qr-code.svg"
+          alt="qr-code"
+        ></img>
+      </div>
+      <div className="flex flex-col ml-5">
         <div class="inline-block align-middle">
           <a
             href="https://apps.apple.com/app/apple-store/id1661880849?pt=126680920&mt=8"
@@ -517,7 +500,7 @@ function StoresLinks(): JSX.Element {
             style={{ width: "165px", height: "55px" }}
           >
             <img
-              src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1673481600"
+              src="/images/redesign/download-app-store.svg"
               alt="Download on the App Store"
               style={{ width: "165px", height: "55px" }}
               className="rounded-xl"
@@ -532,18 +515,11 @@ function StoresLinks(): JSX.Element {
           >
             <img
               alt="Get it on Google Play"
-              src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-              style={{ width: "13rem", height: "5rem" }}
+              src="/images/redesign/download-google-play.svg"
+              style={{ width: "165px", height: "55px" }}
             />
           </a>
         </div>
-      </div>
-      <div>
-        <span class="content-cta-row-or">or</span>
-        &nbsp;
-        <a href="/app" target="_blank" className="font-bold underline text-bluev2">
-          use as a web app
-        </a>
       </div>
     </div>
   );
@@ -616,7 +592,7 @@ function Bubbles(props: IBubblesProps): JSX.Element {
 
 function MainEditorAndPlayground(): JSX.Element {
   const initialDay: IPlannerProgramDay = {
-    name: "What you'll see in the app:",
+    name: "Tap on the squares to complete sets",
     exerciseText: `Squat / 5x5 / progress: lp(5lb)
 Leg Curl / 3x8 / progress: dp(5lb, 8, 12)`,
   };
@@ -655,7 +631,11 @@ Leg Curl / 3x8 / progress: dp(5lb, 8, 12)`,
   return (
     <div className="flex flex-col gap-4 mb-1 md:flex-row">
       <div className="flex-1">
-        <div className="text-lg font-bold">Type your program here:</div>
+        <div className="text-lg font-bold mt-6 mb-3">See it in action:</div>
+        <p className="mb-3">
+          Change the sets, reps or weight or add "
+          <PlannerCodeBlock className="inline-block" script={"Bicep Curl / 3x10 / 12"} />" on a new line.
+        </p>
         <PlannerEditorView
           name="Exercises"
           exerciseFullNames={exerciseFullNames}
@@ -669,9 +649,37 @@ Leg Curl / 3x8 / progress: dp(5lb, 8, 12)`,
           onBlur={() => {}}
           onLineChange={() => {}}
         />
+        <p className="mt-6 bg-gray-600">
+          Custom progressions, myo-reps, drop sets, manipulating weight, reps, RPE or even rest timer via scripts —
+          anything is possible. Check the docs to learn more about Liftoscipt.
+        </p>
       </div>
-      <div className="flex-1">
-        {evaluatedDay.success && <MainPlayground key={text} planner={state.current.program} settings={settings} />}
+
+      <div
+        className="flex-1 p-10 pb-0 rounded-3xl"
+        style={{ background: "linear-gradient(to right,#F6F2FF, #EDE6F6 )" }}
+      >
+        <div
+          style={{
+            border: "2px solid #C9BEEF",
+            boxShadow: "0 0 10px rgba(180, 167, 255, 0.5)",
+            borderRadius: "40px 40px 0 0",
+            borderBottom: "none",
+          }}
+        >
+          <div
+            className=""
+            style={{
+              backgroundColor: "white",
+              borderRadius: "37px 37px 0 0 ",
+              border: "10px solid rgba(180, 167, 255, 0.5)",
+              boxShadow: "0 0 10px rgba(180, 167, 255, 0.5)",
+              borderBottom: "none",
+            }}
+          >
+            {evaluatedDay.success && <MainPlayground key={text} planner={state.current.program} settings={settings} />}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ export function TopNavMenu(props: {
         <div className="flex items-center w-full mr-2 md:hidden">
           <div>
             <button className="p-2 align-middle nm-navbar-hamburger" onClick={() => setIsMenuOpen(true)}>
-              <IconHamburger />
+              <IconHamburger /> Natasha
             </button>
           </div>
           <div>

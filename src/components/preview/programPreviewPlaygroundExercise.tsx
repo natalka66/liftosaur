@@ -81,65 +81,69 @@ export const ProgramPreviewPlaygroundExercise = memo((props: IProps): JSX.Elemen
 
   return (
     <div
+      style={{ width: "370px" }}
       className={`px-2 pt-2 pb-2 mb-3 rounded-lg ${getBgColor100(props.entry)} relative`}
       data-cy={StringUtils.dashcase(exercise.name)}
     >
-      <div className="flex items-center">
-        <div
-          className="absolute z-0 px-2 py-1 leading-none rounded-full bg-grayv2-100"
-          style={{ right: -12, top: -18 }}
-        >
-          <button
-            className="inline-block mr-2 nm-program-details-playground-edit"
-            data-cy="program-preview-edit-exercise"
-            onClick={() => {
-              props.dispatch({
-                type: "UpdateProgress",
-                lensRecordings: [
-                  lb<IHistoryRecord>()
-                    .pi("ui")
-                    .p("editModal")
-                    .record({ programExercise: programExercise, entryIndex: props.index }),
-                ],
-              });
-            }}
+      <div className="flex flex-col">
+        <div className="flex">
+          <div
+            className="absolute z-0 px-2 py-1 leading-none rounded-full bg-grayv2-100"
+            style={{ right: 13, top: 10 }}
           >
-            <IconEditSquare />
-          </button>
-          {props.isPlayground && (
             <button
-              className="inline-block nm-program-details-playground-complete"
-              data-cy="program-preview-complete-exercise"
+              className="inline-block mr-2 nm-program-details-playground-edit"
+              data-cy="program-preview-edit-exercise"
               onClick={() => {
                 props.dispatch({
                   type: "UpdateProgress",
                   lensRecordings: [
                     lb<IHistoryRecord>()
-                      .pi("entries")
-                      .i(props.index)
-                      .p("sets")
-                      .recordModify((sets) => sets.map((s) => ({ ...s, completedReps: s.reps }))),
-                    lb<IHistoryRecord>()
-                      .pi("entries")
-                      .i(props.index)
-                      .p("warmupSets")
-                      .recordModify((sets) => sets.map((s) => ({ ...s, completedReps: s.reps }))),
+                      .pi("ui")
+                      .p("editModal")
+                      .record({ programExercise: programExercise, entryIndex: props.index }),
                   ],
                 });
               }}
             >
-              <IconCheckCircle isChecked={true} color={Reps.isCompleted(props.entry.sets) ? "#38A169" : "#BAC4CD"} />
+              {" "}
+              <IconEditSquare />
             </button>
-          )}
-        </div>
-        <div style={{ width: "40px" }} className="mr-1">
-          <ExerciseImage settings={props.settings} className="w-full" exerciseType={exercise} size="small" />
-        </div>
-        <div className="flex-1 ml-auto" style={{ minWidth: "4rem" }}>
-          <div className="flex items-center">
-            <div className="flex-1 mr-1 font-bold">{exercise.name}</div>
+            {props.isPlayground && (
+              <button
+                className="inline-block nm-program-details-playground-complete"
+                data-cy="program-preview-complete-exercise"
+                onClick={() => {
+                  props.dispatch({
+                    type: "UpdateProgress",
+                    lensRecordings: [
+                      lb<IHistoryRecord>()
+                        .pi("entries")
+                        .i(props.index)
+                        .p("sets")
+                        .recordModify((sets) => sets.map((s) => ({ ...s, completedReps: s.reps }))),
+                      lb<IHistoryRecord>()
+                        .pi("entries")
+                        .i(props.index)
+                        .p("warmupSets")
+                        .recordModify((sets) => sets.map((s) => ({ ...s, completedReps: s.reps }))),
+                    ],
+                  });
+                }}
+              >
+                <IconCheckCircle isChecked={true} color={Reps.isCompleted(props.entry.sets) ? "#38A169" : "#BAC4CD"} />
+              </button>
+            )}
           </div>
-          {equipment && <div className="text-sm text-grayv2-600">{equipmentName(equipment)}</div>}
+          <div style={{ width: "40px" }} className="mr-1">
+            <ExerciseImage settings={props.settings} className="w-full" exerciseType={exercise} size="small" />
+          </div>
+          <div className="flex-1 ml-auto" style={{ minWidth: "4rem" }}>
+            <div className="flex items-center">
+              <div className="flex-1 mr-1 font-bold">{exercise.name}</div>
+            </div>
+            {equipment && <div className="text-sm text-grayv2-600">{equipmentName(equipment)}</div>}
+          </div>
         </div>
         <section className="flex flex-wrap mt-1 ml-1">
           {props.isPlayground ? (

@@ -22,7 +22,11 @@ export default defineConfig({
 
   use: {
     // Base URL to use in actions like `await page.goto('/')`.
+<<<<<<< Updated upstream
     baseURL: `https://${localdomain}.liftosaur.com:8080?skipintro=1`,
+=======
+    baseURL: "https://local2.liftosaur.com:8080?skipintro=1",
+>>>>>>> Stashed changes
 
     // Collect trace when retrying the failed test.
     trace: "on-first-retry",

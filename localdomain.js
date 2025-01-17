@@ -1,4 +1,4 @@
 module.exports = {
-  main: "local",
-  api: "local-api",
+  main: "local2",
+  api: "local-api2",
 };

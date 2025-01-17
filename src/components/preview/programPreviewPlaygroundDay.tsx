@@ -50,8 +50,8 @@ export const ProgramPreviewPlaygroundDay = memo(
     const programDay = Program.getProgramDay(props.program, props.dayIndex);
 
     return (
-      <div data-cy={`preview-day-${StringUtils.dashcase(programDay.name)}`}>
-        <h3 className="mb-1 text-lg font-bold" data-cy="preview-day-name">
+      <div className="flex flex-col items-center" data-cy={`preview-day-${StringUtils.dashcase(programDay.name)}`}>
+        <h3 className="mb-1 text-base text-center mt-10 mb-4" data-cy="preview-day-name">
           {props.weekName ? `${props.weekName} - ` : ""}
           {programDay.name}
         </h3>
@@ -75,7 +75,7 @@ export const ProgramPreviewPlaygroundDay = memo(
           );
         })}
         {props.isPlayground && (
-          <div className="text-center">
+          <div className="text-center mb-5 mt-3">
             <Button
               name="finish-day-details-playground"
               kind="orange"
