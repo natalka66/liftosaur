@@ -4,7 +4,7 @@ import { ComponentChildren, h, JSX, Fragment } from "preact";
 import { useEffect, useMemo, useState } from "preact/hooks";
 import { FooterPage } from "../../components/footerPage";
 import { ProgramPreviewPlaygroundDay } from "../../components/preview/programPreviewPlaygroundDay";
-import { TopNavMenu } from "../../components/topNavMenu";
+
 import { IAccount } from "../../models/account";
 import { PlannerToProgram } from "../../models/plannerToProgram";
 import { Program } from "../../models/program";
@@ -22,6 +22,93 @@ export interface IMainContentProps {
   client: Window["fetch"];
   account?: IAccount;
 }
+type IProgram = {
+  url: string;
+  name: string;
+};
+const buildPrograms: IProgram[] = [
+  { url: "/programs/the5314b", name: "5/3/1 for beginners" },
+  { url: "/programs/dbPpl", name: "Dumbbell PPL" },
+  { url: "/programs/basicBeginner", name: "Fitness Basic Beginner Program" },
+  { url: "/programs/gzclp", name: "GZCLP" },
+  { url: "/programs/gzcl-the-rippler", name: "GZCL: The Rippler" },
+  { url: "/programs/gzcl-general-gainz", name: "GZCL: General Gainz" },
+  { url: "/programs/gzcl-general-gainz-burrito-but-big", name: "GZCL: General Gainz - Burrito But Big" },
+  { url: "/programs/lylegenericbulking", name: "Lyle's Generic Bulking" },
+  { url: "/programs/metallicadpappl", name: "Metallicadpa PPL" },
+  { url: "/programs/ss1", name: "Starting Strength" },
+  { url: "/programs/strongcurves1", name: "Strong Curves" },
+  { url: "/programs/texasmethod", name: "Texas Method" },
+  { url: "/programs/arnoldgoldensix", name: "Arnold Schwarzenegger's Golden Six" },
+  { url: "/programs/gzcl-jacked-and-tan-2", name: "GZCL: Jacked And Tan 2.0" },
+  { url: "/programs/gzcl-uhf-9-weeks", name: "GZCL: UHF (Ultra High Frequency) 9 weeks" },
+  { url: "/programs/gzcl-uhf-5-weeks", name: "GZCL: UHF (Ultra High Frequency) 5 weeks" },
+  { url: "/programs/gzcl-vdip", name: "GZCL: VDIP (Volume-Dependent Intensity Progression" },
+];
+
+type IFeature = {
+  name: string;
+  description: string;
+  icon: string;
+  imgExample: string;
+};
+const features: IFeature[] = [
+  {
+    name: "Workout Editor",
+    description:
+      " Extremely customizable workout editor. Create your programs using Liftoscript - just type the exercises, reps, weights, progressions across days and weeks.",
+    icon: "/images/redesign/icon-editor.svg",
+    imgExample: "/images/mainprogram.png",
+  },
+  {
+    name: "Workout history",
+    description:
+      "All your workouts will be recorded, and you will have the ability to edit any recorded workout as needed.",
+    icon: "/images/redesign/icon-workout-history.svg",
+    imgExample: "/images/mainworkouthistory.png",
+  },
+  {
+    name: "Workout progress",
+    description: "You can track your workouts in the app, and see the progress you've made over time.",
+    icon: "/images/redesign/icon-workout-progress.svg",
+    imgExample: "/images/mainworkouttracking.png",
+  },
+  {
+    name: "Cloud Storage",
+    description:
+      "If you log in using your Google or Apple account, your workout history will be stored in the cloud, so you can access it both on the web and in the app.",
+    icon: "/images/redesign/icon-tracker.svg",
+    imgExample: "/images/maincloudstorage.png",
+  },
+  {
+    name: "Graphs",
+    description:
+      "You can visually track your progress using graphs - weights or volume per exercise, or per muscle group.",
+    icon: "/images/redesign/icon-graphs.svg",
+    imgExample: "/images/maingraphs.png",
+  },
+  {
+    name: "Muscle stats",
+    description:
+      "Get visibility into daily and weekly sets and volume in a program to ensure balanced load and hitting your muscles groups properly.",
+    icon: "/images/redesign/icon-muscle-stats.svg",
+    imgExample: "/images/mainmusclestats.png",
+  },
+  {
+    name: "Undulation graphs",
+    description:
+      "See how volume and intensity changes for your program exercises week over week in multi-week programs",
+    icon: "/images/redesign/icon-undulation-graphs.svg",
+    imgExample: "/images/mainundulationgraphs.jpeg",
+  },
+  {
+    name: "Body Measurements",
+    description:
+      "Track your bodyweight and body part measurements (bicep, tricep, chest, etc). You can also overlay bodyweight graph on the exercise graphs.",
+    icon: "/images/redesign/icon-body-measurements.svg",
+    imgExample: "/images/mainmeasurements.jpeg",
+  },
+];
 
 export function MainContent(props: IMainContentProps): JSX.Element {
   useEffect(() => {
@@ -54,7 +141,7 @@ export function MainContent(props: IMainContentProps): JSX.Element {
           <BuiltinPrograms />
         </div>
 
-        <TopNavMenu client={props.client} account={props.account} maxWidth={1200} current="/about" />
+        {/* <TopNavMenu client={props.client} account={props.account} maxWidth={1200} current="/about" /> */}
 
         <Features />
         <div className="mt-8 text-center"></div>
@@ -157,109 +244,32 @@ function CreateYourOwnPrograms(): JSX.Element {
 
 function BuiltinPrograms(): JSX.Element {
   return (
-    <div className="mx-auto mt-8 " style={{ maxWidth: 1000, backgroundColor: "#F3EEFF" }}>
-      <div className="flex justify-center self-center mt-20">
-        <img style={{ width: "2em" }} src="/images/redesign/icon-programs.svg" alt="icon-programs"></img>
+    <div className="mx-auto mt-16 p-12 rounded-3xl" style={{ maxWidth: 1000, backgroundColor: "#F3EEFF" }}>
+      <div className="flex justify-center items-center">
+        <img src="/images/redesign/icon-programs.svg" alt="icon-programs" className="w-6"></img>
         <h6 className="font-semibold text-base" style={{ color: "#8356F6" }}>
           Weightlifting Programs
         </h6>
       </div>
-      <h2 className="mb-4 text-4xl font-bold text-center">Follow free build-in programs</h2>
-      <p className="mb-2">
-        Start with a trusted program. All are built with Liftoscript, making them fully customizable to match your goals
-        and preferences.
-      </p>
-      <ul className="ml-8 list-disc">
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/the5314b">
-            5/3/1 for beginners
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/basicBeginner">
-            Fitness Basic Beginner Program
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/dbPpl">
-            Dumbbell PPL
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/gzclp">
-            GZCLP
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/gzcl-the-rippler">
-            GZCL: The Rippler
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/gzcl-jacked-and-tan-2">
-            GZCL: Jacked And Tan 2.0
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/gzcl-uhf-9-weeks">
-            GZCL: UHF (Ultra High Frequency) 9 weeks
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/gzcl-uhf-5-weeks">
-            GZCL: UHF (Ultra High Frequency) 5 weeks
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/gzcl-vdip">
-            GZCL: VDIP (Volume-Dependent Intensity Progression)
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/gzcl-general-gainz">
-            GZCL: General Gainz
-          </a>
-        </li>
-        <li>
+      <div className="flex justify-center flex-col">
+        <h2 className=" text-4xl font-bold text-center m-2">Follow free build-in programs</h2>
+        <p className="justify-center text-center pb-6 mx-auto" style={{ maxWidth: "600px" }}>
+          Start with a trusted program. All are built with Liftoscript, making them fully customizable to match your
+          goals and preferences.
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-1">
+        {buildPrograms.map((program) => (
           <a
+            key={program.url}
+            href={program.url}
             target="_blank"
-            className="font-bold underline text-bluev2"
-            href="/programs/gzcl-general-gainz-burrito-but-big"
+            className="font-bol py-2 px-6 rounded-3xl my-1 mr-1 font-semibold bg-white border border-purple-300"
           >
-            GZCL: General Gainz - Burrito But Big
+            {program.name}
           </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/lylegenericbulking">
-            Lyle's Generic Bulking
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/metallicadpappl">
-            Metallicadpa PPL
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/ss1">
-            Starting Strength
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/strongcurves1">
-            Strong Curves
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/texasmethod">
-            Texas Method
-          </a>
-        </li>
-        <li>
-          <a target="_blank" className="font-bold underline text-bluev2" href="/programs/arnoldgoldensix">
-            Arnold Schwarzenegger's Golden Six
-          </a>
-        </li>
-      </ul>
+        ))}
+      </div>
     </div>
   );
 }
@@ -267,7 +277,17 @@ function BuiltinPrograms(): JSX.Element {
 function Features(): JSX.Element {
   return (
     <div className="mx-auto mt-8 text-base" style={{ maxWidth: "800px" }}>
-      <h2 className="mb-4 text-4xl font-bold text-center">Features</h2>
+      <div className="flex justify-center">
+        <img style={{ width: "2em" }} src="/images/redesign/icon-tracker.svg" alt="icon-vector"></img>
+        <h6 className="font-semibold" style={{ color: "#FF543E" }}>
+          Powerful Tracker
+        </h6>
+      </div>
+      <h2 className="mb-4 text-4xl font-bold text-center">Track your progress</h2>
+      <p className="justify-center text-center pb-6" style={{ maxWidth: "750px", margin: "0 auto" }}>
+        Log every set and rep, monitor body stats, and visualize your progress with detailed graphs. All your data is
+        securely stored in the cloud for access anywhere.
+      </p>
 
       <Feature
         img="/images/mainprogram.png"
@@ -275,7 +295,7 @@ function Features(): JSX.Element {
         title="Workout Editor"
         subtitle={
           <span>
-            Extremely customizable workout editor. Create your programs using{" "}
+            Extremely customizable workout editor. Create your programs using Natasha
             <a href="/docs" target="_blank" className="font-bold underline text-bluev2">
               Liftoscript
             </a>{" "}
