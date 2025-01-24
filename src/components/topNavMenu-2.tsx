@@ -1,10 +1,4 @@
-import { h, JSX, Fragment } from "preact";
-
-import { Account } from "./account";
-
-import { IAccount } from "../models/account";
-import { Modal } from "./modal";
-import { Service } from "../api/service";
+import { h, JSX } from "preact";
 
 export function TopNavMenu_2(): JSX.Element {
   return (
@@ -15,7 +9,7 @@ export function TopNavMenu_2(): JSX.Element {
       }}
     >
       <div class="flex items-center ">
-        <div className="flex items-center w-full  font-normal text-white font-semibold ">
+        <div className="flex items-center w-full  text-white font-semibold ">
           <div class="flex items-center mx-5" style={{ flex: "1" }}>
             <a href="https://www.liftosaur.com/">
               <img
@@ -70,50 +64,5 @@ export function TopNavMenu_2(): JSX.Element {
         </div>
       </div>
     </nav>
-  );
-}
-
-function SocialIcons(): JSX.Element {
-  return (
-    <>
-      {[
-        ["Instagram", "https://www.instagram.com/liftosaurapp", "logo-instagram"],
-        ["Twitter", "https://www.twitter.com/liftosaur", "logo-twitter"],
-        ["Reddit", "https://www.reddit.com/r/liftosaur", "logo-reddit"],
-        ["Discord", "https://discord.gg/AAh3cvdBRs", "logo-discord"],
-      ].map(([text, link, img]) => {
-        return (
-          <li className="inline-block list-none md:block">
-            <a
-              target="_blank"
-              href={link}
-              style={{
-                textIndent: "9999px",
-                backgroundPosition: "50%",
-                backgroundSize: "60%",
-                backgroundImage: `url(/images/${img}.svg)`,
-              }}
-              className="inline-block w-10 h-10 px-2 mx-1 overflow-hidden align-middle bg-no-repeat"
-            >
-              <span>{text}</span>
-            </a>
-          </li>
-        );
-      })}
-    </>
-  );
-}
-
-interface IModalAccountProps {
-  account?: IAccount;
-  service: Service;
-  onClose: () => void;
-}
-
-function ModalAccount(props: IModalAccountProps): JSX.Element {
-  return (
-    <Modal onClose={props.onClose} shouldShowClose={true}>
-      <Account account={props.account} client={props.service.client} />
-    </Modal>
   );
 }

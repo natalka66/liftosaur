@@ -17,6 +17,8 @@ import { PlannerEditorView } from "../planner/components/plannerEditorView";
 import { PlannerProgram } from "../planner/models/plannerProgram";
 import { IPlannerState } from "../planner/models/types";
 import { TopNavMenu_2 } from "../../components/topNavMenu-2";
+import { Features } from "./features";
+import { IconWorkoutEditor } from "../../components/icons/iconWorkoutEditor";
 
 export interface IMainContentProps {
   client: Window["fetch"];
@@ -139,11 +141,11 @@ export function MainContent(props: IMainContentProps): JSX.Element {
           <Hero />
           <CreateYourOwnPrograms />
           <BuiltinPrograms />
+          <Features></Features>
         </div>
 
         {/* <TopNavMenu client={props.client} account={props.account} maxWidth={1200} current="/about" /> */}
 
-        <Features />
         <div className="mt-8 text-center"></div>
         <div className="pt-8 mt-16 border-t border-grayv2-100">
           <FooterPage maxWidth={1200} withoutBg={true} account={props.account} />
@@ -210,7 +212,7 @@ function CreateYourOwnPrograms(): JSX.Element {
   return (
     <div className="mx-auto mt-16 text-base" style={{ maxWidth: 1000 }}>
       <div className="flex justify-center">
-        <img style={{ width: "2em" }} src="/images/redesign/icon-editor.svg" alt="icon-editor"></img>
+        <IconWorkoutEditor width={27} height={19} color="#8356F6" />
         <h6 className="font-semibold" style={{ color: "#8356F6" }}>
           Workout Editor
         </h6>
@@ -274,233 +276,6 @@ function BuiltinPrograms(): JSX.Element {
   );
 }
 
-function Features(): JSX.Element {
-  return (
-    <div className="mx-auto mt-8 text-base" style={{ maxWidth: "800px" }}>
-      <div className="flex justify-center">
-        <img style={{ width: "2em" }} src="/images/redesign/icon-tracker.svg" alt="icon-vector"></img>
-        <h6 className="font-semibold" style={{ color: "#FF543E" }}>
-          Powerful Tracker
-        </h6>
-      </div>
-      <h2 className="mb-4 text-4xl font-bold text-center">Track your progress</h2>
-      <p className="justify-center text-center pb-6" style={{ maxWidth: "750px", margin: "0 auto" }}>
-        Log every set and rep, monitor body stats, and visualize your progress with detailed graphs. All your data is
-        securely stored in the cloud for access anywhere.
-      </p>
-
-      <Feature
-        img="/images/mainprogram.png"
-        imgOnLeft={false}
-        title="Workout Editor"
-        subtitle={
-          <span>
-            Extremely customizable workout editor. Create your programs using Natasha
-            <a href="/docs" target="_blank" className="font-bold underline text-bluev2">
-              Liftoscript
-            </a>{" "}
-            - just type the exercises, reps, weights, progressions across days and weeks.
-          </span>
-        }
-        pos1={{ x: 80, y: 40, r: 15 }}
-        pos2={{ x: 40, y: 75, r: 20 }}
-      />
-
-      <Feature
-        img="/images/mainworkouthistory.png"
-        imgOnLeft={true}
-        title="Workout history"
-        subtitle="All your workouts will be recorded, and you will have the ability to edit any recorded workout as needed."
-        pos1={{ x: 20, y: 70, r: 20 }}
-        pos2={{ x: 80, y: 20, r: 15 }}
-      />
-
-      <Feature
-        img="/images/mainworkouttracking.png"
-        imgOnLeft={false}
-        title="Tracking workout progress"
-        subtitle="You can track your workouts in the app, and see the progress you've made over time."
-        pos1={{ x: 30, y: 40, r: 20 }}
-        pos2={{ x: 75, y: 50, r: 25 }}
-      >
-        <div
-          className="absolute z-10 bg-contain oval-plates-calculator"
-          style={{
-            top: "158px",
-            right: "35px",
-            background: "url(/images/oval.svg) no-repeat",
-            width: "144px",
-            height: "77px",
-            transform: "rotate(-11deg)",
-          }}
-        />
-        <div
-          className="absolute z-10 bg-contain arrow-plates-calculator"
-          style={{
-            top: "92px",
-            left: "-44px",
-            background: "url(/images/handdrawn-arrow.svg) no-repeat",
-            width: "112px",
-            height: "56px",
-            transform: "rotate(-140deg) scale(1, -1)",
-          }}
-        />
-        <div
-          className="absolute z-10 bg-contain hint-plates-calculator"
-          style={{
-            top: "61px",
-            left: "-315px",
-            fontSize: "2.5em",
-            color: "#c53030",
-            fontFamily: "Dancing Script, cursive",
-          }}
-        >
-          Plates Calculator
-        </div>
-        <div
-          className="absolute z-10 bg-contain oval-rest-timer"
-          style={{
-            bottom: "51px",
-            right: "-22px",
-            background: "url(/images/oval.svg) no-repeat",
-            backgroundSize: "100%",
-            width: "108px",
-            height: "57px",
-            transform: "rotate(-11deg)",
-          }}
-        />
-        <div
-          className="absolute z-10 bg-contain arrow-rest-timer"
-          style={{
-            bottom: "0px",
-            left: "-24px",
-            background: "url(/images/handdrawn-arrow.svg) no-repeat",
-            width: "112px",
-            height: "56px",
-            transform: "rotate(150deg)",
-          }}
-        />
-        <div
-          className="absolute z-10 bg-contain hint-rest-timer"
-          style={{
-            bottom: "0px",
-            left: "-200px",
-            fontSize: "2.5em",
-            color: "#c53030",
-            fontFamily: "Dancing Script, cursive",
-            whiteSpace: "nowrap",
-          }}
-        >
-          Rest Timer
-        </div>
-      </Feature>
-
-      <Feature
-        img="/images/maincloudstorage.png"
-        imgOnLeft={true}
-        title="Cloud Storage"
-        subtitle="If you log in using your Google or Apple account, your workout history will be stored in the cloud, so you can access it both on the web and in the app."
-        pos2={{ x: 30, y: 35, r: 30 }}
-      >
-        <div
-          className="absolute z-10 bg-contain oval-account"
-          style={{
-            top: "104px",
-            left: "115px",
-            background: "url(/images/oval.svg) no-repeat",
-            backgroundSize: "100%",
-            width: "108px",
-            height: "57px",
-            transform: "rotate(-11deg)",
-          }}
-        />
-        <div
-          className="absolute z-10 bg-contain arrow-account"
-          style={{
-            top: "40px",
-            left: "233px",
-            background: "url(/images/handdrawn-arrow.svg) no-repeat",
-            width: "112px",
-            height: "56px",
-            transform: "rotate(-40deg)",
-          }}
-        />
-        <div
-          className="absolute z-10 bg-contain hint-account"
-          style={{
-            top: "20px",
-            left: "360px",
-            fontSize: "2.5em",
-            color: "#c53030",
-            fontFamily: "Dancing Script, cursive",
-            whiteSpace: "nowrap",
-          }}
-        >
-          Log In
-        </div>
-      </Feature>
-
-      <Feature
-        img="/images/maingraphs.png"
-        imgOnLeft={false}
-        title="Graphs"
-        subtitle={
-          <span>
-            You can visually track your progress using graphs - weights or volume <strong>per exercise</strong>, or{" "}
-            <strong>per muscle group</strong>.
-          </span>
-        }
-        pos1={{ x: 80, y: 80, r: 20 }}
-      />
-
-      <Feature
-        img="/images/mainmusclestats.png"
-        imgOnLeft={true}
-        title="Muscle stats"
-        subtitle="Get visibility into daily and weekly sets and volume in a program to ensure balanced load and hitting your muscles groups properly."
-        pos1={{ x: 60, y: 60, r: 30 }}
-        pos2={{ x: 80, y: 80, r: 20 }}
-      />
-
-      <Feature
-        img="/images/mainundulationgraphs.jpeg"
-        imgOnLeft={false}
-        title="Undulation graphs"
-        subtitle="See how volume and intensity changes for your program exercises week over week in multi-week programs"
-        pos1={{ x: 60, y: 60, r: 30 }}
-      />
-
-      <Feature
-        img="/images/mainmeasurements.jpeg"
-        imgOnLeft={true}
-        title="Body Measurements"
-        subtitle={
-          <>
-            <p className="mb-4">Track your bodyweight and body part measurements (bicep, tricep, chest, etc).</p>
-            <p>You can also overlay bodyweight graph on the exercise graphs.</p>
-          </>
-        }
-        pos2={{ x: 40, y: 60, r: 40 }}
-      />
-
-      <div className="items-center justify-center mt-16">
-        <h3 className="mb-4 text-3xl font-bold leading-none text-center">Web Editor</h3>
-        <p className="text-center">
-          Typing your program on a phone can indeed be tedious. To ease this process, there is a{" "}
-          <a href="/planner" className="font-bold underline text-bluev2">
-            web editor
-          </a>{" "}
-          available. You can edit programs from your account, or you can generate a link to a program, and share with
-          other people. And you can import those links into the app.
-        </p>
-        <div className="mt-4 text-center">
-          <img src="/images/mainwebeditor.png" width="100%" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function StoresLinks(): JSX.Element {
   return (
     <div className="flex">
@@ -545,70 +320,70 @@ function StoresLinks(): JSX.Element {
   );
 }
 
-interface IFeatureProps {
-  pos1?: { x: number; y: number; r: number };
-  pos2?: { x: number; y: number; r: number };
-  img: string;
-  imgOnLeft: boolean;
-  title: string;
-  subtitle: string | JSX.Element;
-  children?: ComponentChildren;
-}
+// interface IFeatureProps {
+//   pos1?: { x: number; y: number; r: number };
+//   pos2?: { x: number; y: number; r: number };
+//   img: string;
+//   imgOnLeft: boolean;
+//   title: string;
+//   subtitle: string | JSX.Element;
+//   children?: ComponentChildren;
+// }
 
-function Feature(props: IFeatureProps): JSX.Element {
-  const width = 216;
-  const height = 444;
-  const innerWidth = 200;
-  const innerHeight = 428;
-  const insetX = 9;
-  const insetY = 7;
-  const imgPart = (
-    <div className="relative flex justify-center flex-1 mt-8">
-      <Bubbles pos1={props.pos1} pos2={props.pos2} />
-      <div className="relative" style={{ width, height }}>
-        <img
-          src={props.img}
-          className="absolute"
-          style={{ width: innerWidth, height: innerHeight, top: insetY, left: insetX }}
-        />
-        <div
-          className="absolute top-0 left-0 z-10 bg-contain"
-          style={{ backgroundImage: "url(/images/iphoneframe.png)", width, height }}
-        />
-        <div className="hidden md:block">{props.children}</div>
-      </div>
-    </div>
-  );
-  const textPart = (
-    <div className="flex items-center justify-center flex-1">
-      <div>
-        <h3 className="mb-4 text-3xl font-bold leading-none text-center md:text-left">{props.title}</h3>
-        <p style={{ maxWidth: "20rem" }}>{props.subtitle}</p>
-      </div>
-    </div>
-  );
-  return (
-    <div className={`flex flex-col gap-4 mb-8 ${props.imgOnLeft ? "md:flex-row-reverse" : "md:flex-row"}`}>
-      {textPart}
-      {imgPart}
-    </div>
-  );
-}
+// function Feature(props: IFeatureProps): JSX.Element {
+//   const width = 216;
+//   const height = 444;
+//   const innerWidth = 200;
+//   const innerHeight = 428;
+//   const insetX = 9;
+//   const insetY = 7;
+//   const imgPart = (
+//     <div className="relative flex justify-center flex-1 mt-8">
+//       <Bubbles pos1={props.pos1} pos2={props.pos2} />
+//       <div className="relative" style={{ width, height }}>
+//         <img
+//           src={props.img}
+//           className="absolute"
+//           style={{ width: innerWidth, height: innerHeight, top: insetY, left: insetX }}
+//         />
+//         <div
+//           className="absolute top-0 left-0 z-10 bg-contain"
+//           style={{ backgroundImage: "url(/images/iphoneframe.png)", width, height }}
+//         />
+//         <div className="hidden md:block">{props.children}</div>
+//       </div>
+//     </div>
+//   );
+//   const textPart = (
+//     <div className="flex items-center justify-center flex-1">
+//       <div>
+//         <h3 className="mb-4 text-3xl font-bold leading-none text-center md:text-left">{props.title}</h3>
+//         <p style={{ maxWidth: "20rem" }}>{props.subtitle}</p>
+//       </div>
+//     </div>
+//   );
+//   return (
+//     <div className={`flex flex-col gap-4 mb-8 ${props.imgOnLeft ? "md:flex-row-reverse" : "md:flex-row"}`}>
+//       {textPart}
+//       {imgPart}
+//     </div>
+//   );
+// }
 
-interface IBubblesProps {
-  pos1?: { x: number; y: number; r: number };
-  pos2?: { x: number; y: number; r: number };
-}
+// interface IBubblesProps {
+//   pos1?: { x: number; y: number; r: number };
+//   pos2?: { x: number; y: number; r: number };
+// }
 
-function Bubbles(props: IBubblesProps): JSX.Element {
-  const { pos1, pos2 } = props;
-  return (
-    <svg className="absolute inset-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {pos1 && <ellipse cx={pos1.x} cy={pos1.y} rx={pos1.r} ry={pos1.r} fill="#FF8066" fill-opacity="0.3" />}
-      {pos2 && <ellipse cx={pos2.x} cy={pos2.y} rx={pos2.r} ry={pos2.r} fill="#8256F6" fill-opacity="0.3" />}
-    </svg>
-  );
-}
+// function Bubbles(props: IBubblesProps): JSX.Element {
+//   const { pos1, pos2 } = props;
+//   return (
+//     <svg className="absolute inset-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+//       {pos1 && <ellipse cx={pos1.x} cy={pos1.y} rx={pos1.r} ry={pos1.r} fill="#FF8066" fill-opacity="0.3" />}
+//       {pos2 && <ellipse cx={pos2.x} cy={pos2.y} rx={pos2.r} ry={pos2.r} fill="#8256F6" fill-opacity="0.3" />}
+//     </svg>
+//   );
+// }
 
 function MainEditorAndPlayground(): JSX.Element {
   const initialDay: IPlannerProgramDay = {
