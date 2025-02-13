@@ -19,6 +19,8 @@ import { IPlannerState } from "../planner/models/types";
 import { TopNavMenu_2 } from "../../components/topNavMenu-2";
 import { Features } from "./features";
 import { IconWorkoutEditor } from "../../components/icons/iconWorkoutEditor";
+import { Tailwind } from "../../utils/tailwindConfig";
+import { IconPrograms } from "../../components/icons/iconPrograms";
 
 export interface IMainContentProps {
   client: Window["fetch"];
@@ -211,11 +213,9 @@ function Hero(): JSX.Element {
 function CreateYourOwnPrograms(): JSX.Element {
   return (
     <div className="mx-auto mt-16 text-base" style={{ maxWidth: 1000 }}>
-      <div className="flex justify-center">
-        <IconWorkoutEditor width={27} height={19} color="#8356F6" />
-        <h6 className="font-semibold" style={{ color: "#8356F6" }}>
-          Workout Editor
-        </h6>
+      <div className="flex justify-center items-center">
+        <IconWorkoutEditor color={Tailwind.colors().purplev3.main} />
+        <h6 className="font-semibold text-purplev3-main">Workout Editor</h6>
       </div>
       <h2 className="mb-4 text-4xl font-bold text-center">Create your own programs</h2>
       <p className="text-center mx-auto mb-12" style={{ width: "700px" }}>
@@ -248,10 +248,8 @@ function BuiltinPrograms(): JSX.Element {
   return (
     <div className="mx-auto mt-16 p-12 rounded-3xl" style={{ maxWidth: 1000, backgroundColor: "#F3EEFF" }}>
       <div className="flex justify-center items-center">
-        <img src="/images/redesign/icon-programs.svg" alt="icon-programs" className="w-6"></img>
-        <h6 className="font-semibold text-base" style={{ color: "#8356F6" }}>
-          Weightlifting Programs
-        </h6>
+        <IconPrograms color={Tailwind.colors().purplev3.main} />
+        <h6 className="font-semibold  text-purplev3-main">Weightlifting Programs</h6>
       </div>
       <div className="flex justify-center flex-col">
         <h2 className=" text-4xl font-bold text-center m-2">Follow free build-in programs</h2>

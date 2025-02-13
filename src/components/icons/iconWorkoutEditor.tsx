@@ -2,59 +2,31 @@ import { h, JSX } from "preact";
 
 interface IProps {
   style?: { [key: string]: string | number };
-  width?: number;
-  height?: number;
+  size?: number;
   color?: string;
   className?: string;
 }
 
 export function IconWorkoutEditor(props: IProps): JSX.Element {
   const color = props.color || "#607284";
+  const size = props.size || 24;
   return (
     <svg
-      stroke={color}
-      width={props.width}
-      height={props.height}
+      width={size}
+      height={size}
       style={props.style}
       className={props.className}
-      viewBox="0 0 27 19"
+      viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_51_161)">
-        <path
-          d="M6.5102 17.3636C4.9886 17.3636 3.7551 16.1426 3.7551 14.6364V13.9057C3.7551 11.9569 2.7049 10.1562 1 9.18188C2.7049 8.20758 3.7551 6.40688 3.7551 4.45808V3.72738C3.7551 2.22118 4.9886 1.00018 6.5102 1.00018"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        <path
-          d="M20 1C21.5216 1 22.7551 2.2211 22.7551 3.7272V4.4579C22.7551 6.4067 23.8053 8.2074 25.5101 9.1817C23.8053 10.156 22.7551 11.9567 22.7551 13.9055V14.6362C22.7551 16.1424 21.5216 17.3634 20 17.3634"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        <path d="M19.7551 9.18182H20.7551" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M10.7549 9.18182H15.7549" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M5.75513 9.18182H6.75513" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-        <path
-          d="M8.95513 6.18182H10.7551V12.1818H8.95513C8.29283 12.1818 7.75513 11.6441 7.75513 10.9818V7.38182C7.75513 6.71952 8.29283 6.18182 8.95513 6.18182Z"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        <path
-          d="M17.5551 12.1818H15.7551V6.18182H17.5551C18.2174 6.18182 18.7551 6.71952 18.7551 7.38182V10.9818C18.7551 11.6441 18.2174 12.1818 17.5551 12.1818Z"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </g>
-      <defs>
-        <clipPath id="clip0_51_161">
-          <rect width="26.5101" height="18.3636" fill="white" />
-        </clipPath>
-      </defs>
+      <path
+        d="M5.94588 19C4.58011 19 3.47294 17.9554 3.47294 16.6667V16.0416C3.47294 14.3743 2.53029 12.8337 1 12.0001C2.53029 11.1665 3.47294 9.62591 3.47294 7.9586V7.33345C3.47294 6.04481 4.58011 5.00017 5.94588 5.00017M18.0542 5C19.42 5 20.5272 6.04472 20.5272 7.33328V7.95843C20.5272 9.62574 21.4698 11.1663 23 11.9999C21.4698 12.8335 20.5272 14.3741 20.5272 16.0414V16.6666C20.5272 17.9552 19.42 18.9998 18.0542 18.9998M17.8344 12H18.732M9.75604 12H14.244M5.2682 12H6.16578M8.14047 9.43333H9.75613V14.5667H8.14047C7.546 14.5667 7.06337 14.1066 7.06337 13.54V10.46C7.06337 9.89336 7.546 9.43333 8.14047 9.43333ZM15.8597 14.5667H14.2441V9.43333H15.8597C16.4542 9.43333 16.9368 9.89336 16.9368 10.46V13.54C16.9368 14.1066 16.4542 14.5667 15.8597 14.5667Z"
+        stroke={color}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
     </svg>
   );
 }
